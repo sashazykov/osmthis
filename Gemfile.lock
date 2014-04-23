@@ -1,14 +1,3 @@
-GIT
-  remote: git://github.com/alexandrz/rosemary.git
-  revision: bd7c82ae013111b2d10c04dad8ddfd4eba56a443
-  specs:
-    rosemary (0.3.12)
-      activemodel (>= 3.0.20)
-      builder (>= 2.1.2)
-      httparty (~> 0.10.0)
-      libxml-ruby (>= 2.4.0)
-      oauth (>= 0.4.7)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -60,6 +49,12 @@ GEM
     multipart-post (2.0.0)
     naught (1.0.0)
     oauth (0.4.7)
+    rosemary (0.4.0)
+      activemodel (>= 3.0.20)
+      builder (>= 2.1.2)
+      httparty (~> 0.10.0)
+      libxml-ruby (>= 2.4.0)
+      oauth (>= 0.4.7)
     simple_oauth (0.2.0)
     thread_safe (0.3.3)
     tweetstream (2.6.1)
@@ -86,5 +81,5 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  rosemary!
+  rosemary (~> 0.4.0)
   tweetstream

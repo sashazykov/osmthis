@@ -1,4 +1,4 @@
 source 'https://rubygems.org'
 
 gem 'tweetstream'
-gem 'rosemary', github: 'alexandrz/rosemary'
+gem 'rosemary', '~> 0.4.0'
