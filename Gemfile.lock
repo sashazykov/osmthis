@@ -82,4 +82,5 @@ PLATFORMS
 
 DEPENDENCIES
   rosemary (~> 0.4.0)
-  tweetstream
+  tweetstream (~> 2.6.1)
+  twitter (~> 5.8.0)

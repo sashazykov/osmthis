@@ -9,6 +9,13 @@ osmthis = '@osmthis'
 osm_client = Rosemary::BasicAuthClient.new(ENV['OSM_USER'], ENV['OSM_PASSWORD'])
 osm_api = Rosemary::Api.new(osm_client)
 
+client = Twitter::REST::Client.new do |config|
+  config.consumer_key        = ENV['TWITTER_API_KEY']
+  config.consumer_secret     = ENV['TWITTER_API_SECRET']
+  config.access_token        = ENV['TWITTER_OAUTH_TOKEN']
+  config.access_token_secret = ENV['TWITTER_OAUTH_SECRET']
+end
+
 TweetStream.configure do |config|
   config.consumer_key       = ENV['TWITTER_API_KEY']
   config.consumer_secret    = ENV['TWITTER_API_SECRET']
@@ -29,6 +36,7 @@ TweetStream::Client.new.track(osmthis) do |status|
       puts "http://www.openstreetmap.org/note/#{note.id}"
     else
       puts "Received a non-geotagged tweet: #{status.url}"
+      client.update "@#{status.user.user_name} the tweet should be geotagged to be posted to OSM", in_reply_to_status_id: status.id
     end
   end
 end
