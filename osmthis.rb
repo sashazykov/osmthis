@@ -32,11 +32,14 @@ TweetStream::Client.new.track(osmthis) do |status|
              "Posted by @#{status.user.user_name} using #{osmthis}\n" +
              "Original tweet: #{status.url}"
       note = osm_api.create_note(lat: status.geo.coordinates[0], lon: status.geo.coordinates[1], text: text.gsub(/^#{osmthis}\s+/, ''))
-      puts "Added a note: #{note.inspect}"
-      puts "http://www.openstreetmap.org/note/#{note.id}"
+      if note.id && note.id != ''
+        client.update "@#{status.user.user_name} Thank you! You can find your note here: http://www.openstreetmap.org/note/#{note.id}", in_reply_to_status_id: status.id
+      else
+        puts "Error: #{note.inspect}"
+      end
     else
       puts "Received a non-geotagged tweet: #{status.url}"
-      client.update "@#{status.user.user_name} the tweet should be geotagged to be posted to OSM", in_reply_to_status_id: status.id
+      client.update "@#{status.user.user_name} The tweet should be geotagged to be posted to OSM", in_reply_to_status_id: status.id
     end
   end
 end
